@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" data-theme="melange" data-strand="twine">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>mind.</title>
+<meta name="description" content="mind. is a quiet place to write down strings of thoughts, sort them into brain books and watch them connect.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,500;1,6..96,700&family=Caveat:wght@500&family=Courier+Prime&family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="light" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="barLeft">
+    <a class="mark" href="#write" aria-label="mind. Write">mind<span>.</span></a>
+    <button class="bookPill" id="bookPill" type="button" title="Switch brain book">
+      <i class="bookDot" id="bookDot"></i><span id="bookPillName">Brain book</span>
+    </button>
+  </div>
+  <nav class="nav" id="nav" aria-label="Sections">
+    <button type="button" data-view="write">Write</button>
+    <button type="button" data-view="notes">Notes</button>
+    <button type="button" data-view="web">Web</button>
+    <button type="button" data-view="books">Books</button>
+  </nav>
+  <div class="barRight">
+    <span class="clock" id="clock" title="Time in Vienna"></span>
+    <button class="icon" id="openSettings" type="button" aria-label="Open settings">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- WRITE -->
+  <section class="view" id="view-write" aria-label="Write">
+    <div class="writeHead">
+      <div class="titleWrap">
+        <label class="sr" for="stringTitle">Name of this string</label>
+        <input id="stringTitle" class="stringTitle" maxlength="80" placeholder="Name this string" autocomplete="off">
+      </div>
+      <div class="writeTools">
+        <label class="sr" for="stringPicker">Open another string</label>
+        <select id="stringPicker" class="pillSel"></select>
+        <button class="btn" id="newString" type="button">New string</button>
+      </div>
+    </div>
+    <div class="loom" id="loom">
+      <svg id="stringSvg" class="stringSvg" aria-hidden="true" focusable="false">
+        <defs><path id="strandPath" d="M0 0"/></defs>
+        <g id="pan">
+          <g id="strandG">
+            <use href="#strandPath" class="strand s-base"/>
+            <use href="#strandPath" class="strand s-twist"/>
+          </g>
+          <g id="ringG"></g>
+          <g id="linkLayer"></g>
+          <g id="beadLayer"></g>
+          <g id="thoughtLayer"></g>
+          <g id="knotLayer"></g>
+          <text id="liveText" class="thoughtText live"><textPath id="liveTP" href="#strandPath" startOffset="0"></textPath></text>
+          <g id="caret" class="caret"><rect x="2" y="-24" width="2.5" height="30" rx="1"/></g>
+        </g>
+      </svg>
+      <label class="sr" for="capture">Write your next thought. Press Enter to tie a knot.</label>
+      <textarea id="capture" class="capture" rows="1" autocomplete="off" autocapitalize="sentences" spellcheck="true"></textarea>
+      <div class="prompt" id="prompt"><p id="promptText"></p><small>Start typing. The string follows you.</small></div>
+      <button class="btn jump" id="jumpEnd" type="button" hidden>Back to the end</button>
+    </div>
+    <p class="writeFoot"><span id="writeCount">0 thoughts on this string</span><span class="footHint">Enter ties a knot. Backspace on an empty line unties the last one. Click a thought to open it.</span></p>
+  </section>
+
+  <!-- NOTES -->
+  <section class="view" id="view-notes" aria-label="Notes">
+    <div class="notes">
+      <aside class="rail" id="notesRail" aria-label="Categories"></aside>
+      <div class="listCol">
+        <div class="listTools">
+          <input type="search" id="notesSearch" class="field" placeholder="Search your thoughts" aria-label="Search your thoughts" autocomplete="off">
+          <select id="notesSort" class="pillSel" aria-label="Sort thoughts">
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+            <option value="links">Most linked</option>
+          </select>
+        </div>
+        <div class="list" id="notesList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEB -->
+  <section class="view" id="view-web" aria-label="Web of thoughts">
+    <div class="webStage" id="webStage">
+      <canvas id="webCanvas" role="img" aria-label="A web of your thoughts. Dots are thoughts, lines are links. The Notes section lists the same thoughts as text."></canvas>
+      <div class="webTools">
+        <div class="seg" role="group" aria-label="Layout">
+          <button type="button" data-mode="drift" aria-pressed="true">Drift</button>
+          <button type="button" data-mode="strings" aria-pressed="false">Strings</button>
+          <button type="button" data-mode="clusters" aria-pressed="false">Clusters</button>
+        </div>
+        <label class="check"><input type="checkbox" id="webThreads" checked>Show threads</label>
+        <label class="check"><input type="checkbox" id="webAll">All brain books</label>
+        <input type="search" id="webFind" class="field small" placeholder="Find a thought" aria-label="Find a thought" autocomplete="off">
+      </div>
+      <div class="webLegend" id="webLegend" role="group" aria-label="Filter by category"></div>
+      <div class="webZoom">
+        <button class="icon sm" id="zoomIn" type="button" aria-label="Zoom in">+</button>
+        <button class="icon sm" id="zoomOut" type="button" aria-label="Zoom out">&minus;</button>
+        <button class="btn small" id="zoomFit" type="button">Fit</button>
+      </div>
+      <div class="webTip" id="webTip" aria-hidden="true" hidden></div>
+      <div class="webEmpty" id="webEmpty" hidden>
+        <p>No thoughts to connect yet.</p>
+        <button class="btn primary" type="button" data-go="write">Write the first one</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKS -->
+  <section class="view" id="view-books" aria-label="Brain books">
+    <div class="shelfHead">
+      <div>
+        <h1>Brain books</h1>
+        <p class="muted">Each book keeps its own strings, thoughts and categories.</p>
+      </div>
+      <button class="btn primary" id="newBook" type="button">New brain book</button>
+    </div>
+    <div class="shelfWrap">
+      <div class="shelf" id="shelf"></div>
+      <div class="shelfBoard"></div>
+    </div>
+    <div class="bookDetail" id="bookDetail"></div>
+  </section>
+</main>
+
+<!-- Inspector -->
+<aside class="panel" id="inspector" aria-label="Thought" inert aria-hidden="true">
+  <div class="panel-head">
+    <h2>Thought</h2>
+    <button class="icon" type="button" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="panel-body" id="inspectorBody"></div>
+</aside>
+
+<!-- Settings -->
+<aside class="panel" id="settings" aria-label="Settings" inert aria-hidden="true">
+  <div class="panel-head">
+    <h2>Settings</h2>
+    <button class="icon" type="button" data-close aria-label="Close settings">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="panel-body">
+    <section class="sgroup">
+      <h3>Theme</h3>
+      <div class="themes" id="themeList"></div>
+    </section>
+    <section class="sgroup">
+      <h3>Accent colour</h3>
+      <div class="row">
+        <input type="color" id="accentInput" aria-label="Accent colour">
+        <button class="btn quiet small" id="accentReset" type="button">Use the theme's colour</button>
+      </div>
+    </section>
+    <section class="sgroup">
+      <h3>Writing</h3>
+      <div class="row col"><span class="lab" id="fontLab">Typeface</span><div class="chips" id="fontChips" role="group" aria-labelledby="fontLab"></div></div>
+      <label class="row"><span class="lab">Text size</span><input type="range" id="sizeRange" min="22" max="46" step="1"></label>
+      <div class="row col"><span class="lab" id="strandLab">String style</span><div class="chips" id="strandChips" role="group" aria-labelledby="strandLab"></div></div>
+      <label class="row"><span class="lab">How much the string waves</span><input type="range" id="waveRange" min="0" max="100" step="1"></label>
+    </section>
+    <section class="sgroup">
+      <h3>Atmosphere</h3>
+      <label class="row"><span class="lab">Window light</span><span class="switch"><input type="checkbox" id="optLight" role="switch"><i></i></span></label>
+      <label class="row"><span class="lab">Paper grain</span><span class="switch"><input type="checkbox" id="optGrain" role="switch"><i></i></span></label>
+      <label class="row"><span class="lab">Show the time in Vienna</span><span class="switch"><input type="checkbox" id="optClock" role="switch"><i></i></span></label>
+      <label class="row"><span class="lab">Keys play soft jazz notes</span><span class="switch"><input type="checkbox" id="optNotes" role="switch"><i></i></span></label>
+      <label class="row"><span class="lab">Note volume</span><input type="range" id="volRange" min="0" max="100" step="1"></label>
+      <label class="row"><span class="lab">Calm motion only</span><span class="switch"><input type="checkbox" id="optCalm" role="switch"><i></i></span></label>
+    </section>
+    <section class="sgroup">
+      <h3>Your data</h3>
+      <p class="muted">Everything stays in this browser. Export a copy whenever you like.</p>
+      <div class="btnRow">
+        <button class="btn small" id="dataExport" type="button">Export</button>
+        <button class="btn small" id="dataImport" type="button">Import</button>
+        <button class="btn small" id="dataSample" type="button">Add a sample string</button>
+        <button class="btn small danger" id="dataClear" type="button">Clear everything</button>
+      </div>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </section>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<dialog id="bookDialog" aria-labelledby="bdTitle">
+  <form method="dialog" id="bookForm">
+    <h2 id="bdTitle">New brain book</h2>
+    <p class="muted">A brain book keeps its own strings, thoughts and categories.</p>
+    <label class="fieldLab" for="newBookName">Name</label>
+    <input id="newBookName" class="field" required maxlength="40" placeholder="Afternoon notes" autocomplete="off">
+    <fieldset class="covers"><legend>Cover</legend><div id="coverPick" class="coverPick"></div></fieldset>
+    <div class="dlgActions">
+      <button class="btn quiet" value="cancel" formnovalidate>Cancel</button>
+      <button class="btn primary" value="create">Create book</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/core.js"></script>
+<script src="js/store.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/inspector.js"></script>
+<script src="js/string.js"></script>
+<script src="js/notes.js"></script>
+<script src="js/web.js"></script>
+<script src="js/books.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
