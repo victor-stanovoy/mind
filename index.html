@@ -16,6 +16,7 @@
   <nav class="rail" aria-label="Main">
     <div class="logo" aria-label="mind.">mind<b>.</b></div>
     <button class="nav-btn" data-view="string" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15c4-8 6-8 10 0s6 8 10 0"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/></svg><span>String</span></button>
+    <button class="nav-btn" data-view="sky"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><circle cx="19" cy="18" r="1.4"/><circle cx="5.5" cy="18.5" r="1"/></svg><span>Sky</span></button>
     <button class="nav-btn" data-view="notes"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2.5"/><path d="M8.5 9h7M8.5 12.5h7M8.5 16h4"/></svg><span>Notes</span></button>
     <button class="nav-btn" data-view="web"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="17" r="2.4"/><path d="M7.7 8.2l3 6.9M16.6 7.6l-3.3 7.6M8 7h8"/></svg><span>Web</span></button>
     <button class="nav-btn" data-view="books"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/></svg><span>Books</span></button>
@@ -64,6 +65,22 @@
             <button class="btn" id="btnRandom" type="button" title="Jump to a random older knot">Resurface</button>
             <button class="btn" id="btnClear" type="button">Clear</button>
             <button class="btn primary" id="btnKnot" type="button">Tie a knot</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-sky" aria-label="Sky: write in the stars" hidden>
+        <div class="canvas-wrap sky-wrap" id="skyWrap">
+          <canvas id="skyCanvas" role="application" aria-label="Night sky. Type to turn words into stars. Enter ties the constellation."></canvas>
+          <textarea class="ghost-input" id="skyInput" aria-label="Write a thought among the stars" autocomplete="off" spellcheck="true" rows="1"></textarea>
+          <div class="pop sky-card" id="skyCard" hidden></div>
+        </div>
+        <div class="stage-foot">
+          <div class="hint" id="skyHint"></div>
+          <div class="foot-actions">
+            <button class="btn" id="skyFit" type="button">Zoom out</button>
+            <button class="btn" id="skyClear" type="button">Clear</button>
+            <button class="btn primary" id="skyKnot" type="button">Tie a constellation</button>
           </div>
         </div>
       </section>

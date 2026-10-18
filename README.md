@@ -7,12 +7,13 @@ No build step, no dependencies. Open `index.html`, or serve the folder (`python3
 ## What is in it
 
 - **String.** Type along a wavy string that wiggles under your keystrokes. Enter opens a naming screen: name the knot, pick a category and pull threads to related knots. Every knot hangs a name tag on the string. Staff and bar lines, Resurface for a random old knot, Focus mode.
-- **Jazz keys.** The Keys button opens a small band: Rhodes, vibes or pluck, ii–V–I, minor, autumn or blues changes, walking bass and brushes. Keys are mapped to the scale of the chord that is sounding, so every letter lands on a good note. A piano shows what you play.
+- **Sky.** A second, weirder way to write: every word you finish becomes a star on a night sky, a comet carries the word you are typing, and each tied thought becomes a named constellation. Zoom out to see your whole sky.
+- **Jazz keys.** On by default. The Keys button opens a small band: Rhodes, vibes or pluck, ii–V–I, minor, autumn or blues changes, walking bass and brushes. Keys are mapped to the scale of the chord that is sounding, so every letter lands on a good note. A piano shows what you play.
 - **Notes.** Cards or columns with names, starring, categories, search and drag to re-sort.
 - **Web.** Only names are shown. Three layouts (Drift, Clusters, Score), link mode, zoom, filters.
-- **Books.** A shelf of 3D hardbacks with a live preview when you bind a new one.
+- **Books.** A shelf of fully 3D hardbacks (six faces, thicker or slimmer). The cover designer lets you pick material, colour, pattern, frame, fonts, spine and ribbon, design the back cover, and place stickers and text anywhere on front or back. Drag the preview to turn the book.
 - **Settings.** Five solid themes (Abendrot, Kaffeehaus, Blue Hour, Secession, Marmor), string rhythm, sway and wiggle, text size, backup and Markdown export.
-- **Quick keys.** `Ctrl/⌘ K` search and commands, `Alt 1–4` switch view, `Alt J` jazz on/off.
+- **Quick keys.** `Ctrl/⌘ K` search and commands, `Alt 1–5` switch view, `Alt J` jazz on/off.
 
 Everything is saved in your browser (`localStorage`).
 
