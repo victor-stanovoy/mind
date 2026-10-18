@@ -1,28 +1,21 @@
 # mind.
 
-A quiet place to write down strings of thoughts, sort them into brain books and watch them connect. Built to feel like a jazzy afternoon in a Vienna coffeehouse.
+A place to thread your thoughts onto a literal string, name every knot, and watch them connect. A jazzy afternoon with a hint of Vienna.
 
-No build step and no dependencies. Open `index.html`, or serve the folder (for example `python3 -m http.server`). To publish it, turn on GitHub Pages for the `main` branch.
+No build step, no dependencies. Open `index.html`, or serve the folder (`python3 -m http.server`). Turn on GitHub Pages for `main` to publish.
 
 ## What is in it
 
-- **Write.** Thoughts are written along a literal string. Type to feed the string, press Enter to tie a knot, and the string carries on to the next thought. Backspace on an empty line unties the last knot. Drag or scroll to travel along the string. Linked thoughts hang under it as loops.
-- **Notes.** Every thought in a brain book, grouped by string. Sort thoughts into your own categories (rename, recolour, add, delete) and search or sort the list.
-- **Linking.** Open any thought to link it to earlier ones. mind. also suggests echoes: other thoughts that share words with the one you just tied.
-- **Web.** All thoughts as an explorable web. Three layouts: Drift (free floating), Strings (one row per string) and Clusters (grouped by category). Drag dots, zoom, filter by category, search, and include every brain book.
-- **Books.** A shelf of brain books. Each keeps its own strings, thoughts and categories.
-- **Settings.** Four themes (Melange, Blue note, Banquette, Schönbrunn dusk), accent colour, four writing typefaces, text size, string style and waviness, window light, paper grain, the time in Vienna, optional soft jazz notes while you type, and calm motion.
+- **String.** Type along a wavy string that wiggles under your keystrokes. Enter opens a naming screen: name the knot, pick a category and pull threads to related knots. Every knot hangs a name tag on the string. Staff and bar lines, Resurface for a random old knot, Focus mode.
+- **Jazz keys.** The Keys button opens a small band: Rhodes, vibes or pluck, ii–V–I, minor, autumn or blues changes, walking bass and brushes. Keys are mapped to the scale of the chord that is sounding, so every letter lands on a good note. A piano shows what you play.
+- **Notes.** Cards or columns with names, starring, categories, search and drag to re-sort.
+- **Web.** Only names are shown. Three layouts (Drift, Clusters, Score), link mode, zoom, filters.
+- **Books.** A shelf of 3D hardbacks with a live preview when you bind a new one.
+- **Settings.** Five solid themes (Abendrot, Kaffeehaus, Blue Hour, Secession, Marmor), string rhythm, sway and wiggle, text size, backup and Markdown export.
+- **Quick keys.** `Ctrl/⌘ K` search and commands, `Alt 1–4` switch view, `Alt J` jazz on/off.
 
-Everything is saved in your browser (`localStorage`). Export and import a JSON copy from Settings.
+Everything is saved in your browser (`localStorage`).
 
 ## Files
 
-| File | Job |
-| --- | --- |
-| `index.html`, `styles.css` | Page and design |
-| `js/store.js` | Brain books, strings, thoughts, categories, links, echoes |
-| `js/string.js` | The writing interface |
-| `js/notes.js`, `js/inspector.js` | Notes list and the thought panel |
-| `js/web.js` | The web of thoughts |
-| `js/books.js` | The shelf |
-| `js/settings.js`, `js/sound.js`, `js/app.js` | Settings, sound, routing |
+`index.html` page · `styles.css` design · `app.js` app · `jazz.js` audio and Keys panel
