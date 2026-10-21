@@ -538,3 +538,6 @@ body.cafe .card{position:relative}
 .lock-row.shake{animation:shake .35s}
 @keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 body.locked .app,body.locked .grain{visibility:hidden}
+body.cafe .namer-row .chip,body.cafe .namer-input.veil{filter:blur(6px);transition:filter .35s ease .08s}
+body.cafe .namer-row .chip:hover,body.cafe .namer-row .chip:focus-visible,body.cafe .namer-row .chip[aria-pressed="true"]{filter:none}
+body.cafe .sheet-list .pick .tx b{filter:none}
