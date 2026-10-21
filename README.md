@@ -20,3 +20,9 @@ Everything is saved in your browser (`localStorage`).
 ## Files
 
 `index.html` page · `styles.css` design · `app.js` app · `jazz.js` audio and Keys panel
+
+## v4
+
+- **Café mode** (Alt+C, the cup in the rail): thoughts and titles are veiled on the string, in the sky, on the web and in notes until you hover them. What you type stays readable for a moment, then dots out. Alt+H (or Hide) covers the screen; it also hides itself when idle or when the tab is left, with an optional PIN. Keys can stay silent while it is on.
+- **A web that scales**: knots never overlap, and titles are placed so none sits on a knot or on another title (the most important ones choose first). A Spacing setting, Isolate on a selected knot, and room to zoom out to hundreds of thoughts.
+- **Books that move**: they slowly turn on the shelf, swing to face you on hover, and when chosen the cover opens, the pages turn and you dive into the string.
